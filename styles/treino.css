@@ -4,7 +4,7 @@
     padding: 0 1em ;
 }
 
-.treino__voltar {
+.icone__voltar {
     width: 30px;
     margin-top: 1em;
     margin-left: 0.5em;
@@ -29,7 +29,6 @@
 .treino__container__conteudo{
     display: flex;
     flex-direction: column;
-    gap: 0.8em;
 }
 
 .treino__container__serie{
@@ -46,6 +45,7 @@
     color: var(--cor-fonte-titulo);
     font-weight: 500;
     font-size: 1.3em;
+    padding-top: 0.5em;
 }
 
 .treino__container__serie{
@@ -56,5 +56,11 @@
 .treino__container__conteudo__serie {
     color: rgb(192, 141, 104);
     font-size: 1.3em;
+}
+
+/*Pagina gig*/
+
+.treino__gif{
+    width: 100%;
 }
 

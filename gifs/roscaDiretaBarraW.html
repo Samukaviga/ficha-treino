@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Ficha de Treino</title>
+</head>
+<body>
+    <header>
+        <nav class="cabecario__menu">
+            <img class="cabecario__menu__icone" id="hamburguer" src="../assets/menu-hamburguer.svg" alt="Icone de navegacao lateral">
+            <div class="container__menu__logo">
+                <img class="cabecario__menu__logo" src="../assets/logo.jpg" alt="Logotipo da academia">
+            </div>
+            
+            <div class="navegacao" id="navegacao">
+                
+                <ul class="navegacao__lista">
+                    <li class="navegacao__lista__item"><a class="strong-home" href="../">HOME</a></li>
+                    <li class="navegacao__lista__item"><a href="#">Treino - A</a></li>
+                    <li class="navegacao__lista__item"><a href="#">Treino - B</a></li>
+                    <li class="navegacao__lista__item"><a href="#">Treino - C</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="principal__treino">
+
+            <a href="../"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+            <h1 class="treino__titulo">Rosca Direta Barra W</h1>
+    
+
+        <section class="treino">
+            <img class="treino__gif" src="../assets/gif/rosca-direta-na-barra-w.webp" alt="">
+        </section>
+    </main>
+<script>
+    const hamburguer = document.querySelector("#hamburguer");
+    const navegacao = document.querySelector('#navegacao');
+
+    hamburguer.addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        const displayNavegacao = window.getComputedStyle(navegacao).display
+
+        if(displayNavegacao == 'none'){
+            navegacao.style.display = 'block';
+        } else {
+            navegacao.style.display = 'none';
+        }
+        
+    });
+
+
+</script>
+</body>
+</html>
