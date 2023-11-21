@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
+@import url(./menu.css);
+@import url(./principal.css);
+@import url(./treino.css);
+
+:root {
+    --cor-menu: #2D4356;
+    --cor-de-fundo: #435B66;
+    --cor-de-fundo-treino: #0d2c42;
+    --cor-fonte-titulo: #e4c5bb;
+    --fonte-principal: 'Roboto', sans-serif;
+    --cor-fonte-lista-strong: rgb(130, 148, 170);
+}
+
+body {
+    background-color: var(--cor-de-fundo);
+    font-family: var(--fonte-principal);
+}

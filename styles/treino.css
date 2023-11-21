@@ -1,0 +1,60 @@
+
+
+.principal__treino {
+    padding: 0 1em ;
+}
+
+.treino__voltar {
+    width: 30px;
+    margin-top: 1em;
+    margin-left: 0.5em;
+}
+
+.treino__titulo { 
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--cor-fonte-titulo);
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+.treino {
+    background-color: var(--cor-menu);
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: solid 2px var(--cor-de-fundo-treino) ;
+}
+
+.treino__container__conteudo{
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+}
+
+.treino__container__serie{
+    display: flex;
+}
+
+.treino__container__conteudo__titulo{
+    font-weight: 500;
+    color: rgb(192, 141, 104);
+    font-size: 1.3em;
+}
+
+.treino__container__conteudo__exercicio{
+    color: var(--cor-fonte-titulo);
+    font-weight: 500;
+    font-size: 1.3em;
+}
+
+.treino__container__serie{
+    display: flex;
+    align-items: center;
+}
+
+.treino__container__conteudo__serie {
+    color: rgb(192, 141, 104);
+    font-size: 1.3em;
+}
+

@@ -1,0 +1,45 @@
+
+.sessao__treino {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.sessao__treino__container{
+    background-color: var(--cor-de-fundo-treino);
+    width: 50%;
+    padding: 1em;
+    border-radius: 8px;
+    margin: 1em 0;
+    text-align: center;
+}
+
+.sessao__treino__container__titulo a{
+    color: var(--cor-fonte-titulo);
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.sessao__dados {
+    display: flex;
+    justify-content: center;
+    margin: 2em 0;
+}
+
+.sessao__dados__lista {
+    background-color: var(--cor-menu);
+    padding: 1em;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.sessao__dados__lista__item {
+    color: var(--cor-fonte-titulo);
+    font-size: 1.3em;
+    padding: 0.5em 0;
+}
+
+.strong {
+    color: var(--cor-fonte-lista-strong);
+    font-weight: 500;
+}
