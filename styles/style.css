@@ -2,6 +2,7 @@
 @import url(./menu.css);
 @import url(./principal.css);
 @import url(./treino.css);
+@import url(./login.css);
 
 :root {
     --cor-menu: #2D4356;

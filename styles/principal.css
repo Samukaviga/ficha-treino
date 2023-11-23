@@ -43,3 +43,27 @@
     color: var(--cor-fonte-lista-strong);
     font-weight: 500;
 }
+
+/*Principal admin*/
+
+
+
+.lista__pesquisar__item{
+    margin: 1em 0 1em 2em;
+    list-style-type: circle;
+
+}
+
+.lista__pesquisar__link {
+    color: var(--cor-de-fundo-treino);
+    border-bottom: solid 1px var(--cor-de-fundo-treino);
+    font-size: 1.2em;
+    font-weight: 500;
+    
+}
+
+.botao__pesquisar{
+    border: solid 2px var(--cor-de-fundo-treino);
+}
+
+

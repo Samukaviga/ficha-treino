@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Ficha de Treino</title>
+</head>
+<body>
+    <header>
+        <nav class="cabecario__menu">
+            <img class="cabecario__menu__icone" id="hamburguer" src="../assets/menu-hamburguer.svg" alt="Icone de navegacao lateral">
+            <div class="container__menu__logo">
+                <img class="cabecario__menu__logo" src="../assets/logo.jpg" alt="Logotipo da academia">
+            </div>
+            
+            <div class="navegacao" id="navegacao">
+                
+                <ul class="navegacao__lista">
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                </ul>
+            </div>
+        </nav>
+    </heade r>
+    <main class="principal">
+
+        
+        <a href="./"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+
+        <section class="sessao__treino">
+            <div class="sessao__treino__container">
+                <h1 class="sessao__treino__container__titulo"><a href="./treino.html">Treino - A</a></h1>
+            </div>
+            <div class="sessao__treino__container">
+                <h2 class="sessao__treino__container__titulo"><a href="./treino.html">Treino - B</a></h2>
+            </div>
+            <div class="sessao__treino__container">
+                <h3 class="sessao__treino__container__titulo"><a href="./treino.html">Treino - C</a></h3>
+            </div>
+        </section>
+
+        <section class="sessao__dados">
+            <ul class="sessao__dados__lista">
+                <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO:</strong> Samuel Gomes Teixeira</li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR:</strong> Tauan</li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO:</strong> Emagrecimento</li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio:</strong> 07/03/23</li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca:</strong> 07/05/2023</li>
+            </ul>
+        </section>
+    </main>
+<script>
+    const hamburguer = document.querySelector("#hamburguer");
+    const navegacao = document.querySelector('#navegacao');
+
+    hamburguer.addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        const displayNavegacao = window.getComputedStyle(navegacao).display
+
+        if(displayNavegacao == 'none'){
+            navegacao.style.display = 'block';
+        } else {
+            navegacao.style.display = 'none';
+        }
+        
+    });
+
+
+</script>
+</body>
+</html>

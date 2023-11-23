@@ -18,23 +18,28 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="../">HOME</a></li>
-                    <li class="navegacao__lista__item"><a href="#">Treino - A</a></li>
-                    <li class="navegacao__lista__item"><a href="#">Treino - B</a></li>
-                    <li class="navegacao__lista__item"><a href="#">Treino - C</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <main class="principal__treino">
-
-            <a href="../"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
-            <h1 class="treino__titulo">Rosca Direta Barra W</h1>
-    
-
-        <section class="treino">
-            <img class="treino__gif" src="../assets/gif/rosca-direta-na-barra-w.webp" alt="">
+    <main class="principal">
+        
+        <section class="pesquisar">
+            <form class="formulario" action="">
+                <div class="formulario__div">
+                    <label class="formulario__div__label label__pesquisar" for="">Pesquisar Aluno</label>
+                    <input class="formulario__div__input input__pesquisar" type="search" name="pesquisar" >
+                </div>
+                <input class="formulario__botao botao__pesquisar" value="Buscar" type="submit" name="" id="">
+            </form>
         </section>
+
+        <ul class="lista__pesquisar">
+            <li class="lista__pesquisar__item" ><a class="lista__pesquisar__link" href="./informacoes.html">Samuel Gomes Teixeira</a></li>
+            <li class="lista__pesquisar__item"><a  class="lista__pesquisar__link" href="./informacoes.html">Alexandre</a></li>
+        </ul>
+
     </main>
 <script>
     const hamburguer = document.querySelector("#hamburguer");

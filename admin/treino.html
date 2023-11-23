@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/reset.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Ficha de Treino</title>
+</head>
+<body>
+    <header>
+        <nav class="cabecario__menu">
+            <img class="cabecario__menu__icone" id="hamburguer" src="../assets/menu-hamburguer.svg" alt="Icone de navegacao lateral">
+            <div class="container__menu__logo">
+                <img class="cabecario__menu__logo" src="../assets/logo.jpg" alt="Logotipo da academia">
+            </div>
+            
+            <div class="navegacao" id="navegacao">
+                
+                <ul class="navegacao__lista">
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main class="principal__treino">
+
+            <a href="./informacoes.html"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+            <h1 class="treino__titulo">Treino - A</h1>
+    
+
+        <section class="treino treino__admin">
+            <div class="treino__container__conteudo" >
+                <a href="./gifs/roscaDiretaBanco.html">
+                    <p class="treino__container__conteudo__titulo" >A1 Biceps</p>
+                    <p class="treino__container__conteudo__exercicio">Rosca Scott</p>
+                   
+                </a>
+            </div>
+            <div class="treino__container__serie">
+                <p class="treino__container__conteudo__serie">3x12</p>
+             
+            </div>
+            
+        </section>
+        <div class="container__excluir" >
+            <a class="botao__excluir" href="#">Excluir</a>  
+        </div>
+ 
+
+        <h2 class="adicionar__titulo" >Adicionar Exercicio</h2>
+
+        <section class="adicionar">
+            <form class="formulario" action="">
+            
+               
+                <div class="formulario__div" >
+                    <label class="formulario__div__label" for="">Exercicio</label>
+                    <select class="formulario__div__input__objetivo">
+                      <option value="0">Exercicio:</option>
+                      <option value="1">Rosca Direta Pulley</option>
+                      <option value="2">Agachamento livre</option>
+                      <option value="2">Agachamento Sumo</option>
+                    </select>
+                </div>
+
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Serie</label>
+                    <input class="formulario__div__input" type="text" name="nome" required>
+                </div>
+                  
+                <button class="formulario__botao" type="submit" name="enviar" >Entrar</button>
+            </form>
+        </section>
+    </main>
+<script>
+    const hamburguer = document.querySelector("#hamburguer");
+    const navegacao = document.querySelector('#navegacao');
+
+    hamburguer.addEventListener('click', (event) => {
+        event.preventDefault();
+        
+        const displayNavegacao = window.getComputedStyle(navegacao).display
+
+        if(displayNavegacao == 'none'){
+            navegacao.style.display = 'block';
+        } else {
+            navegacao.style.display = 'none';
+        }
+        
+    });
+
+
+</script>
+</body>
+</html>

@@ -58,9 +58,46 @@
     font-size: 1.3em;
 }
 
-/*Pagina gig*/
+/*Pagina gif*/
 
 .treino__gif{
     width: 100%;
 }
 
+/* pagina treino admin */
+
+.adicionar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor-de-fundo-treino);
+    margin: 2em 2em 1em 2em;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.adicionar__titulo {
+    font-size: 2em;
+    font-weight: 700;
+    color: var(--cor-fonte-titulo);
+    text-align: center;
+    margin: 1em 0 0 0;
+
+}
+
+.container__excluir{
+    display: flex;
+    justify-content: end;
+}
+
+.botao__excluir {
+    color: #ca3636;
+    font-weight: 500;
+    font-size: 1.2em;
+    border-bottom: solid 2px #ca3636;
+}
+
+.treino__admin {
+    margin: 0.4em 0
+}
