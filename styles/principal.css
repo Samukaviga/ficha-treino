@@ -66,4 +66,16 @@
     border: solid 2px var(--cor-de-fundo-treino);
 }
 
+.sessao__dados__alterar {
+    display: flex;
+    justify-content: end;
+}
+
+.sessao__dados__alterar__botao {
+    color: #818FB4;
+    font-size: 1.3em;
+    border-bottom: 2px solid #818FB4;
+    font-weight: 500;
+}
+
 

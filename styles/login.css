@@ -12,6 +12,17 @@
 
 }
 
+.cadastro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--cor-de-fundo-treino);
+    margin: 2em 2em 1em 2em;
+    border-radius: 1em;
+    padding: 1em;
+}
+
 .login__titulo {
     font-size: 2.2em;
     color: var(--cor-de-fundo);
@@ -80,6 +91,8 @@
     font-weight: 900;
     margin-top: 1em;
 }
+
+
 
 
 
