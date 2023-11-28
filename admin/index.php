@@ -1,3 +1,22 @@
+<?php
+
+    include_once("../conexao.php");
+    include_once("./funcoes/professor.php");
+
+    session_start();  
+    
+    $id_usuario = $_SESSION["id"];
+    $nome = $_SESSION["nome"];
+    $email = $_SESSION['email'];
+
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: ./login.php");
+        exit;
+    }
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,6 +38,7 @@
                 
                 <ul class="navegacao__lista">
                     <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
                 </ul>
             </div>
         </nav>

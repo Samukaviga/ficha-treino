@@ -1,3 +1,23 @@
+<?php
+
+    include_once("../conexao.php");
+    include_once("./funcoes/aluno.php");
+
+    session_start();  
+    
+    $id_usuario = $_SESSION["id"];
+    $nome = $_SESSION["nome"];
+    $email = $_SESSION['email'];
+
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: ./login.php");
+        exit;
+    }
+
+    $aluno = buscandoAluno($pdo, $email);
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -22,6 +42,7 @@
                     <li class="navegacao__lista__item"><a href="./treino.html">Treino - A</a></li>
                     <li class="navegacao__lista__item"><a href="./treino.html">Treino - B</a></li>
                     <li class="navegacao__lista__item"><a href="./treino.html">Treino - C</a></li>
+                    <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a></li>
                 </ul>
             </div>
         </nav>
@@ -41,11 +62,11 @@
 
         <section class="sessao__dados">
             <ul class="sessao__dados__lista">
-                <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO:</strong> Samuel Gomes Teixeira</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR:</strong> Tauan</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO:</strong> Emagrecimento</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio:</strong> 07/03/23</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca:</strong> 07/05/2023</li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO: </strong><?= $aluno['nome']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR: </strong><?= $aluno['professor']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO: </strong><?= $aluno['objetivo']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong><?= $aluno['data_inicio']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong><?= $aluno['data_troca']; ?></li>
             </ul>
         </section>
     </main>
