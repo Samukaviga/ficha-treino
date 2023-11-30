@@ -60,7 +60,7 @@
 
 
     $exercicios = listagemExercicios($pdo);
-    $treinos = listagemTreino($pdo);
+    $treinos = listagemTreino($pdo, $_SESSION['tipo_treino'], $id_aluno);
 
    
 
@@ -96,13 +96,14 @@
 
             <a href="./informacoes.php?id=<?= $id_aluno; ?>"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
             <h1 class="treino__titulo">Treino - <?= $tipo_treino; ?></h1>
-    
+            <?php $i = 1; ?>
             <?php  foreach($treinos as $treino): ?>
+                
         <section class="treino treino__admin">
             
             <div class="treino__container__conteudo" >
                 <a href="./gifs/roscaDiretaBanco.html">
-                    <p class="treino__container__conteudo__titulo" >A1 <?= $treino['agrupamento']; ?></p>
+                    <p class="treino__container__conteudo__titulo" ><?= $treino['tipo']; ?><?= $i; ?> <?= $treino['agrupamento']; ?></p>
                     <p class="treino__container__conteudo__exercicio"><?= $treino['nome']; ?></p>
                    
                 </a>
@@ -115,8 +116,9 @@
         </section>
         
         <div class="container__excluir" >
-            <a class="botao__excluir" href="#">Excluir</a>  
+            <a class="botao__excluir" href="excluirTreino.php?id=<?= $treino['id']; ?>">Excluir</a>  
         </div>
+        <?php $i += 1; ?>
         <?php endforeach; ?>
  
 

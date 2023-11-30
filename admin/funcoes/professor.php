@@ -60,9 +60,15 @@ function listagemExercicios($pdo) {
     return $result;
 }
 
-function listagemTreino($pdo){
-    $sql = "SELECT exercicio.agrupamento, exercicio.nome, treino.serie, treino.tipo FROM treino INNER JOIN exercicio ON exercicio.id = treino.id_exercicio";
+function listagemTreino($pdo, $tipo, $id){
+    $sql = "SELECT exercicio.agrupamento, exercicio.nome, treino.id, treino.serie, treino.tipo 
+    FROM treino 
+    INNER JOIN exercicio ON exercicio.id = treino.id_exercicio 
+    WHERE tipo LIKE CONCAT('%', :tipo, '%') AND treino.id_aluno = :id";
+
     $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetchAll();
     return $result;
@@ -85,5 +91,18 @@ function adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno
         return true;   
     } else {
         return false;
+    }
+}
+
+function excluirTreino($pdo, $id){
+    $sql = "DELETE FROM treino WHERE id = :id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+  
+    if($stmt->execute()){
+    return true;   
+    } else {
+    return false;
     }
 }

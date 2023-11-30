@@ -1,3 +1,29 @@
+<?php
+
+    include_once("../conexao.php");
+    include_once("./funcoes/professor.php");
+
+    session_start();  
+    
+    $id_usuario = $_SESSION["id"];
+    $nome = $_SESSION["nome"];
+    $email = $_SESSION['email'];
+    $id_aluno = $_SESSION['id_aluno'];
+
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: ./login.php");
+        exit;
+    }
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+       $dataTroca = $_POST['dataTroca'];
+       $dataInicio = $_POST['dataInicio'];
+
+        
+
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -26,13 +52,13 @@
     </header>
     <main class="principal__treino">
 
-            <a href="./informacoes.html"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+            <a href="./informacoes.php?id=<?= $id_aluno; ?>"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
  
 
         <h2 class="adicionar__titulo" >Alterar Data</h2>
 
         <section class="adicionar">
-            <form class="formulario" action="">
+            <form class="formulario" action="" method="POST">
             
                
                 <div class="formulario__div" >
