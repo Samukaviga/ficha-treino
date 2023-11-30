@@ -14,6 +14,7 @@
         exit;
     }
 
+    $listas = listaAlunos($pdo);
 
 
 ?>
@@ -56,8 +57,10 @@
         </section>
 
         <ul class="lista__pesquisar">
-            <li class="lista__pesquisar__item" ><a class="lista__pesquisar__link" href="./informacoes.html">Samuel Gomes Teixeira</a></li>
-            <li class="lista__pesquisar__item"><a  class="lista__pesquisar__link" href="./informacoes.html">Alexandre</a></li>
+            <?php foreach($listas as $lista): ?>
+            <li class="lista__pesquisar__item" ><a class="lista__pesquisar__link" href="./informacoes.php?id=<?= $lista['id'];?>"><?= $lista['nome']; ?></a></li>
+        
+            <?php endforeach; ?>
         </ul>
 
     </main>

@@ -1,3 +1,32 @@
+<?php
+
+    include_once("../conexao.php");
+    include_once("./funcoes/professor.php");
+
+    session_start();  
+    
+    $id_usuario = $_SESSION["id"];
+    $nome = $_SESSION["nome"];
+    $email = $_SESSION['email'];
+
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: ./login.php");
+        exit;
+    }
+
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
+
+        if($_GET['id']){
+            $id = $_GET['id'];
+            $_SESSION['id_aluno'] = $id;
+            $aluno = buscandoDadosAluno($pdo, $id);
+
+           
+        }
+    }
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -30,23 +59,23 @@
 
         <section class="sessao__treino">
             <div class="sessao__treino__container">
-                <h1 class="sessao__treino__container__titulo"><a href="./treino.html">Treino - A</a></h1>
+                <h1 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=A">Treino - A</a></h1>
             </div>
             <div class="sessao__treino__container">
-                <h2 class="sessao__treino__container__titulo"><a href="./treino.html">Treino - B</a></h2>
+                <h2 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=B">Treino - B</a></h2>
             </div>
             <div class="sessao__treino__container">
-                <h3 class="sessao__treino__container__titulo"><a href="./treino.html">Treino - C</a></h3>
+                <h3 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=C">Treino - C</a></h3>
             </div>
         </section>
 
         <section class="sessao__dados">
             <ul class="sessao__dados__lista">
-                <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO:</strong> Samuel Gomes Teixeira</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR:</strong> Tauan</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO:</strong> Emagrecimento</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio:</strong> 07/03/23</li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca:</strong> 07/05/2023</li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO: </strong><?= $aluno['nome']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR: </strong><?= $aluno['professor']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO: </strong><?= $aluno['objetivo']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong> <?= $aluno['data_inicio']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong> <?= $aluno['data_troca']; ?></li>
                 
                 <div class="sessao__dados__alterar" >
                     <a class="sessao__dados__alterar__botao" href="./alterarData.html">Alterar</a>
