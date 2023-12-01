@@ -26,40 +26,35 @@
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
 
-        if($_GET['tipo']){
-            $tipo = $_GET['tipo'];
-        }
+       
     }
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){ 
 
-        if(empty(trim($_POST["serie"]))){
-            alerta("Por favor, insira a serie.");
-        } 
-
-        if($_POST['id_exercicio'] == 0){
-            alerta('Selecione um exercicio');
-        } 
-         
-        $id_exercicio = $_POST['id_exercicio'];
-        $serie = trim($_POST["serie"]);
-
-
-        $adicionado = adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $_SESSION['tipo_treino']);
-
-        if($adicionado){
-            alerta("Exercicio adicionado com sucesso!");
+        if(empty(trim($_POST["nome_exercicio"]))){
+            alerta("Por favor, insira um nome para o Exercicio.");
+        } else if($_POST['agrupamento'] == 0){
+            alerta('Selecione um agrupamento');
         } else {
-            alerta("Falha ao adicionar o exercicio");
+
+            $agrupamento = $_POST['agrupamento'];
+            $nome_exercicio = $_POST["nome_exercicio"];
+    
+    
+            $adicionado = adicionandoExercicio($pdo, $agrupamento, $nome_exercicio);
+    
+            if($adicionado){
+                alerta("Exercicio adicionado com sucesso!");
+            } else {
+                alerta("Falha ao adicionar o exercicio");
+            }
         }
+         
+      
     }
 
 
-    $tipo_treino = $_SESSION['tipo_treino'];
 
-
-    $exercicios = listagemExercicios($pdo);
-    $treinos = listagemTreino($pdo, $_SESSION['tipo_treino'], $id_aluno);
 
    
 
@@ -95,53 +90,34 @@
     </header>
     <main class="principal__treino">
 
-            <a href="./informacoes.php?id=<?= $id_aluno; ?>"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
-            <h1 class="treino__titulo">Treino - <?= $tipo_treino; ?></h1>
-            <?php $i = 1; ?>
-            <?php  foreach($treinos as $treino): ?>
-                
-        <section class="treino treino__admin">
-            
-            <div class="treino__container__conteudo" >
-                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo_treino; ?>">
-                    <p class="treino__container__conteudo__titulo" ><?= $treino['tipo']; ?><?= $i; ?> <?= $treino['agrupamento']; ?></p>
-                    <p class="treino__container__conteudo__exercicio"><?= $treino['nome']; ?></p>
-                   
-                </a>
-            </div>
-            <div class="treino__container__serie">
-                <p class="treino__container__conteudo__serie"><?= $treino['serie']; ?></p>
-             
-            </div>
-            
-        </section>
+            <a href="./"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
         
-        <div class="container__excluir" >
-            <a class="botao__excluir" href="excluirTreino.php?id=<?= $treino['id']; ?>">Excluir</a>  
-        </div>
-        <?php $i += 1; ?>
-        <?php endforeach; ?>
- 
 
-        <h2 class="adicionar__titulo" >Adicionar Exercicio</h2>
+        <h2 class="adicionar__titulo" >Exercicio</h2>
 
         <section class="adicionar">
             <form class="formulario" action="" method="post">
             
                
                 <div class="formulario__div" >
-                    <label class="formulario__div__label" for="">Exercicio</label>
-                    <select name="id_exercicio" class="formulario__div__input__objetivo">
-                      <option value="0">Exercicio:</option>
-                      <?php foreach($exercicios as $exercicio): ?>
-                        <option value="<?= $exercicio['id']; ?>"><?= $exercicio['nome']; ?></option>
-                      <?php endforeach; ?>
+                    <label class="formulario__div__label" for="">Agrupamento</label>
+                    <select name="agrupamento" class="formulario__div__input__objetivo">
+                      <option value="0">Agrupamento:</option>
+                      
+                        
+                        <option value="Quadriceps">Quadriceps</option>
+                        <option value="Posterior Coxa">Posterior Coxa</option>
+                        <option value="Biceps">Biceps</option>
+                        <option value="Triceps">Triceps</option>
+                        <option value="Ombro">Ombro</option>
+                        <option value="Peito">Peito</option>
+                     
                     </select>
                 </div>
 
                 <div class="formulario__div">
-                    <label class="formulario__div__label" for="">Serie</label>
-                    <input class="formulario__div__input" type="text" name="serie" required>
+                    <label class="formulario__div__label" for="">Nome Exercicio</label>
+                    <input class="formulario__div__input" type="text" name="nome_exercicio" required>
                 </div>
                   
                 <button class="formulario__botao" type="submit" name="enviar" >Adicionar</button>

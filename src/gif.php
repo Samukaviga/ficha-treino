@@ -5,16 +5,26 @@
 
     session_start();  
     
-    $id_usuario = $_SESSION["id"];
-    $nome = $_SESSION["nome"];
-    $email = $_SESSION['email'];
+    $id_professor = $_SESSION["id"];
+    $id_aluno = $_SESSION['id'];
+
+
 
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: ./login.php");
         exit;
     }
 
-    $aluno = buscandoAluno($pdo, $email);
+    
+
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
+
+        $nomeExercicio = $_GET['nome'];
+        $tipo_treino = $_GET['tipo'];
+    }
+
+
+   
 
 
 ?>
@@ -38,7 +48,7 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="../">HOME</a></li>
                     <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a></li>
                     <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a></li>
                     <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a></li>
@@ -47,27 +57,14 @@
             </div>
         </nav>
     </header>
-    <main class="principal">
-        <section class="sessao__treino">
-            <div class="sessao__treino__container">
-                <h1 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=A">Treino - A</a></h1>
-            </div>
-            <div class="sessao__treino__container">
-                <h2 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=B">Treino - B</a></h2>
-            </div>
-            <div class="sessao__treino__container">
-                <h3 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=C">Treino - C</a></h3>
-            </div>
-        </section>
+    <main class="principal__treino">
 
-        <section class="sessao__dados">
-            <ul class="sessao__dados__lista">
-                <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO: </strong><?= $aluno['nome']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR: </strong><?= $aluno['professor']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO: </strong><?= $aluno['objetivo']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong><?= $aluno['data_inicio']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong><?= $aluno['data_troca']; ?></li>
-            </ul>
+            <a href="./treino.php?tipo=<?= $tipo_treino; ?>"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+            <h1 class="treino__titulo"><?= $nomeExercicio; ?></h1>
+    
+
+        <section class="treino">
+            <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.webp" alt="">
         </section>
     </main>
 <script>

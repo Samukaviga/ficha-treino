@@ -34,3 +34,17 @@ function cadastrandoAluno($pdo, $nome, $email, $objetivo, $id_professor, $senha)
         return false;
     }
 }
+
+function listagemTreino($pdo, $tipo, $id){
+    $sql = "SELECT exercicio.agrupamento, exercicio.nome, treino.id, treino.serie, treino.tipo 
+    FROM treino 
+    INNER JOIN exercicio ON exercicio.id = treino.id_exercicio 
+    WHERE tipo LIKE CONCAT('%', :tipo, '%') AND treino.id_aluno = :id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}

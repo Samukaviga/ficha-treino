@@ -1,3 +1,30 @@
+<?php
+
+    include_once("../conexao.php");
+    include_once("./funcoes/aluno.php");
+
+    session_start();  
+    
+    $id = $_SESSION["id"];
+    $nome = $_SESSION["nome"];
+    $email = $_SESSION['email'];
+
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+        header("location: ./login.php");
+        exit;
+    }
+
+
+    if (isset($_GET['tipo'])) {
+        $tipo = $_GET['tipo'];
+        $_SESSION['tipo_treino'] = $tipo;
+    }
+
+
+     $treinos = listagemTreino($pdo, $tipo, $id);
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -19,9 +46,10 @@
                 
                 <ul class="navegacao__lista">
                     <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
-                    <li class="navegacao__lista__item"><a href="#">Treino - A</a></li>
-                    <li class="navegacao__lista__item"><a href="#">Treino - B</a></li>
-                    <li class="navegacao__lista__item"><a href="#">Treino - C</a></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a></li>
+                    <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a></li>
                 </ul>
             </div>
         </nav>
@@ -29,32 +57,25 @@
     <main class="principal__treino">
 
             <a href="./"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
-            <h1 class="treino__titulo">Treino - A</h1>
+            <h1 class="treino__titulo">Treino - <?= $tipo; ?></h1>
     
-
+        <?php $i = 1; ?>
+        <?php foreach($treinos as $treino): ?>
         <section class="treino">
             <div class="treino__container__conteudo" >
-                <a href="./gifs/roscaDiretaBanco.html">
-                    <p class="treino__container__conteudo__titulo" >A1 Biceps</p>
-                    <p class="treino__container__conteudo__exercicio">Rosca Scott</p>
+                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo; ?>">
+                    <p class="treino__container__conteudo__titulo" ><?= $treino['tipo']; ?><?= $i; ?> <?= $treino['agrupamento']; ?></p>
+                    <p class="treino__container__conteudo__exercicio"><?= $treino['nome']; ?></p>
                 </a>
             </div>
             <div class="treino__container__serie">
-                <p class="treino__container__conteudo__serie">3x12</p>
+                <p class="treino__container__conteudo__serie"><?= $treino['serie']; ?></p>
             </div>
         </section>
-        <section class="treino">
-            <div class="treino__container__conteudo" >
-                <a href="./gifs/roscaDiretaBarraW.html">
-                    <p class="treino__container__conteudo__titulo" >A2 Biceps</p>
-                    <p class="treino__container__conteudo__exercicio">Rosca direta barra W</p>
-                </a>
-            </div>
-            <div class="treino__container__serie">
-                <p class="treino__container__conteudo__serie">3x12</p>
-            </div>
-        </section>
-    </main>
+        <?php $i += 1; ?>
+        <?php endforeach; ?>
+    
+    </main> 
 <script>
     const hamburguer = document.querySelector("#hamburguer");
     const navegacao = document.querySelector('#navegacao');

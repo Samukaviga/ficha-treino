@@ -5,10 +5,10 @@
 
     session_start();  
     
-    $id_usuario = $_SESSION["id"];
-    $nome = $_SESSION["nome"];
-    $email = $_SESSION['email'];
+    $id_professor = $_SESSION["id"];
+    $id_aluno = $_SESSION['id_aluno'];
     $admin = $_SESSION['admin'];
+
 
 
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
@@ -16,18 +16,16 @@
         exit;
     }
 
-    if($_SERVER["REQUEST_METHOD"] == "POST"){
-        
-        $nomeDigitado = $_POST['pesquisar'];
-        $listas = listaAlunos($pdo, $nomeDigitado);
-        
+    
 
-    } else {
-        $nomeDigitado = '';
-        $listas = listaAlunos($pdo, $nomeDigitado);
-        
+    if($_SERVER["REQUEST_METHOD"] == "GET"){
+
+        $nomeExercicio = $_GET['nome'];
+        $tipo_treino = $_GET['tipo'];
     }
 
+
+   
 
 
 ?>
@@ -51,32 +49,22 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="../">HOME</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
                 </ul>
             </div>
         </nav>
     </header>
-    <main class="principal">
-        
-        <section class="pesquisar">
-            <form class="formulario" action="" method="POST">
-                <div class="formulario__div">
-                    <label class="formulario__div__label label__pesquisar" for="">Pesquisar Aluno</label>
-                    <input class="formulario__div__input input__pesquisar" type="search" name="pesquisar" >
-                </div>
-                <input class="formulario__botao botao__pesquisar" value="Buscar" type="submit" name="" id="">
-            </form>
+    <main class="principal__treino">
+
+            <a href="./treino.php?tipo=<?= $tipo_treino; ?>"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+            <h1 class="treino__titulo"><?= $nomeExercicio; ?></h1>
+    
+
+        <section class="treino">
+            <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.webp" alt="">
         </section>
-
-        <ul class="lista__pesquisar">
-            <?php foreach($listas as $lista): ?>
-            <li class="lista__pesquisar__item" ><a class="lista__pesquisar__link" href="./informacoes.php?id=<?= $lista['id'];?>"><?= $lista['nome']; ?></a></li>
-        
-            <?php endforeach; ?>
-        </ul>
-
     </main>
 <script>
     const hamburguer = document.querySelector("#hamburguer");

@@ -5,9 +5,9 @@
     $dotenv->load(); */
 
     $servidor = 'localhost';
-    $usuario = 'root';
-    $senha = '';
-    $banco = 'academia';
+    $usuario = 'id21606598_samuel';
+    $senha = 'newYORK!23'; 
+    $banco = 'id21606598_academia';
 
 
     try {

@@ -2,7 +2,7 @@
 
 
 function buscandoProfessor($pdo, $email) {
-    $sql = "SELECT id, email, nome, senha FROM professor WHERE email = :email";
+    $sql = "SELECT id, email, nome, senha, admin FROM professor WHERE email = :email";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":email", $email, PDO::PARAM_STR);
     $stmt->execute();
@@ -29,12 +29,24 @@ function cadastrandoProfessor($pdo, $nome, $email, $senha) {
     }
 }
 
-function listaAlunos($pdo){
-    $sql = "SELECT id, nome FROM aluno";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll();
-    return $result;
+function listaAlunos($pdo, $nome){
+   
+    if($nome != ''){
+        $sql = "SELECT id, nome FROM aluno WHERE nome LIKE CONCAT('%', :nome, '%')";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':nome', $nome, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+
+    } else {
+        $sql = "SELECT id, nome FROM aluno";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll();
+        return $result;
+    }
+
 }
 
 function alerta($mensagem) {
@@ -104,5 +116,41 @@ function excluirTreino($pdo, $id){
     return true;   
     } else {
     return false;
+    }
+}
+
+function alterandoData($pdo ,$id_aluno ,$dataInicio, $dataTroca) {
+    
+    $sql = "UPDATE aluno SET data_inicio = :dataInicio, data_troca = :dataTroca WHERE id = :id";
+                
+    if($stmt = $pdo->prepare($sql)){
+        $stmt->bindParam(":dataInicio", $dataInicio, PDO::PARAM_STR);
+        $stmt->bindParam(":dataTroca", $dataTroca, PDO::PARAM_STR);
+        $stmt->bindParam(":id", $id_aluno, PDO::PARAM_INT);
+        $stmt->execute();
+
+        if($stmt->rowCount()){
+           return true;
+        } 
+    
+    } else {
+        return false;
+    }
+}
+
+function adicionandoExercicio($pdo, $agrupamento, $nome_exercicio){
+    
+    $sql = "INSERT INTO exercicio (agrupamento, nome) 
+                VALUES (:agrupamento, :nome)";
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':agrupamento', $agrupamento, PDO::PARAM_STR);
+    $stmt->bindParam(':nome', $nome_exercicio, PDO::PARAM_STR);
+   
+    
+    if($stmt->execute()){
+        return true;   
+    } else {
+        return false;
     }
 }

@@ -29,6 +29,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $email = $usuario["email"];
             $hashed_password = $usuario["senha"];
             $nome = $usuario['nome'];
+            $admin = $usuario['admin'];
 
             if(password_verify($senhaDigitada, $hashed_password)){
                  
@@ -38,6 +39,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                  $_SESSION["id"] = $id;
                  $_SESSION["email"] = $email;
                  $_SESSION['nome'] = $nome;
+                 $_SESSION['admin'] = $admin;
                                              
                 header("location: ./");
                 

@@ -9,8 +9,9 @@
     $nome = $_SESSION["nome"];
     $email = $_SESSION['email'];
     $id_aluno = $_SESSION['id_aluno'];
+    $admin = $_SESSION['admin'];
 
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
         header("location: ./login.php");
         exit;
     }
@@ -20,8 +21,20 @@
        $dataTroca = $_POST['dataTroca'];
        $dataInicio = $_POST['dataInicio'];
 
-        
+        if(empty($dataInicio) || empty($dataTroca)){
+            alerta("Preencha as datas!");
+        } else {
 
+            $alterado = alterandoData($pdo, $id_aluno, $dataInicio, $dataTroca);
+
+            if($alterado){
+                    alerta("Datas alterada com sucesso!");
+            } else {
+                    alerta("Falha ao alterar data");
+            }
+        }
+
+       
     }
 ?>
 <!DOCTYPE html>
@@ -45,6 +58,8 @@
                 
                 <ul class="navegacao__lista">
                     <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
                 
                 </ul>
             </div>

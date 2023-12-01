@@ -8,8 +8,9 @@
     $id_usuario = $_SESSION["id"];
     $nome = $_SESSION["nome"];
     $email = $_SESSION['email'];
+    $admin = $_SESSION['admin'];
 
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
         header("location: ./login.php");
         exit;
     }
@@ -48,6 +49,8 @@
                 
                 <ul class="navegacao__lista">
                     <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
                 </ul>
             </div>
         </nav>
@@ -74,8 +77,8 @@
                 <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO: </strong><?= $aluno['nome']; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR: </strong><?= $aluno['professor']; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO: </strong><?= $aluno['objetivo']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong> <?= $aluno['data_inicio']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong> <?= $aluno['data_troca']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong> <?= date('d/m/Y', strtotime($aluno['data_inicio'])); ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong> <?= date('d/m/Y', strtotime($aluno['data_troca'])); ?></li>
                 
                 <div class="sessao__dados__alterar" >
                     <a class="sessao__dados__alterar__botao" href="./alterarData.php">Alterar</a>
