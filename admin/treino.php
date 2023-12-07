@@ -12,6 +12,7 @@
     $admin = $_SESSION['admin'];
 
 
+
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
         header("location: ./login.php");
         exit;
@@ -48,15 +49,13 @@
         $adicionado = adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $_SESSION['tipo_treino']);
 
         if($adicionado){
-            alerta("Exercicio adicionado com sucesso!");
+          
         } else {
             alerta("Falha ao adicionar o exercicio");
         }
     }
 
-
     $tipo_treino = $_SESSION['tipo_treino'];
-
 
     $exercicios = listagemExercicios($pdo);
     $treinos = listagemTreino($pdo, $_SESSION['tipo_treino'], $id_aluno);
@@ -64,7 +63,7 @@
    
 
 
-?>
+?>  
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -87,6 +86,7 @@
                 <ul class="navegacao__lista">
                     <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
                 
                 </ul>

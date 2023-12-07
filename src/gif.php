@@ -52,6 +52,7 @@
                     <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a></li>
                     <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a></li>
                     <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a></li>
+                    <li class="navegacao__lista__item"><a href="./alterarSenha.php">Alterar Senha</a></li>
                     <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a></li>
                 </ul>
             </div>
@@ -64,7 +65,7 @@
     
 
         <section class="treino">
-            <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.webp" alt="">
+            <img class="treino__gif" src="../assets/gif/<?=$nomeExercicio;?>.gif" alt="Exercicio Gif">
         </section>
     </main>
 <script>

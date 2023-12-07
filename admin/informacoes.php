@@ -22,7 +22,6 @@
             $_SESSION['id_aluno'] = $id;
             $aluno = buscandoDadosAluno($pdo, $id);
 
-           
         }
     }
 
@@ -50,6 +49,7 @@
                 <ul class="navegacao__lista">
                     <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
                 </ul>
             </div>

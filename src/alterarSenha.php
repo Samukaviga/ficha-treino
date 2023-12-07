@@ -1,40 +1,40 @@
 <?php
 
     include_once("../conexao.php");
-    include_once("./funcoes/professor.php");
+    include_once("./funcoes/aluno.php");
 
     session_start();  
     
     $id_usuario = $_SESSION["id"];
     $nome = $_SESSION["nome"];
     $email = $_SESSION['email'];
-    $id_aluno = $_SESSION['id_aluno'];
-    $admin = $_SESSION['admin'];
+   
 
-    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
+    if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: ./login.php");
         exit;
     }
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-       $dataTroca = $_POST['dataTroca'];
-       $dataInicio = $_POST['dataInicio'];
+        if(empty(trim($_POST["senha-atual"])) || empty(trim($_POST["senha-nova"]))){
+            alerta("Por favor insira uma senha");
+        } else if($_POST["senha-nova"] !== $_POST["confirmar-senha"]) {
+            alerta("As Senhas nao se coincidem");
+        } else{
+           
+           $senhaAntiga = $_POST["senha-atual"];
+           $senhaNova = $_POST["senha-nova"];
+        
+           $alterou = alterarSenha($pdo, $senhaNova, $senhaAntiga, $id_usuario);
 
-        if(empty($dataInicio) || empty($dataTroca)){
-            alerta("Preencha as datas!");
-        } else {
+           if($alterou){
+               alerta("Senha alterada com sucesso!");
+           } else {
+               alerta("Senha incorreta");
+           }
+       }
 
-            $alterado = alterandoData($pdo, $id_aluno, $dataInicio, $dataTroca);
-
-            if($alterado){
-                    alerta("Datas alterada com sucesso!");
-            } else {
-                    alerta("Falha ao alterar data");
-            }
-        }
-
-       
     }
 ?>
 <!DOCTYPE html>
@@ -57,10 +57,12 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
+                <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a></li>
+                    <li class="navegacao__lista__item"><a href="./alterarSenha.php">Alterar Senha</a></li>
+                    <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a></li>
                 
                 </ul>
             </div>
@@ -68,25 +70,30 @@
     </header>
     <main class="principal__treino">
 
-            <a href="./informacoes.php?id=<?= $id_aluno; ?>"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+            <a href="./"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
  
 
-        <h2 class="adicionar__titulo" >Alterar Data</h2>
+        <h2 class="adicionar__titulo" >Alterar Senha</h2>
 
         <section class="adicionar">
             <form class="formulario" action="" method="POST">
             
                
                 <div class="formulario__div" >
-                    <label class="formulario__div__label" for="">Data Inicio</label>
-                    <input class="formulario__div__input" type="date" name="dataInicio">
+                    <label class="formulario__div__label" for="">Senha Atual</label>
+                    <input class="formulario__div__input" type="password" name="senha-atual">
                 </div>
 
                 <div class="formulario__div">
-                    <label class="formulario__div__label" for="">Data de Troca</label>
-                    <input class="formulario__div__input" type="date" name="dataTroca">
+                    <label class="formulario__div__label" for="">Senha Nova</label>
+                    <input class="formulario__div__input" type="password" name="senha-nova">
                 </div>
                   
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Confirmar Senha</label>
+                    <input class="formulario__div__input" type="password" name="confirmar-senha">
+                </div>
+
                 <button class="formulario__botao" type="submit" name="enviar" >Alterar</button>
             </form>
         </section>

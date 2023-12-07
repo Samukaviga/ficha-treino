@@ -4,10 +4,10 @@
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
     $dotenv->load(); */
 
-    $servidor = 'localhost';
-    $usuario = 'id21606598_samuel';
-    $senha = 'newYORK!23'; 
-    $banco = 'id21606598_academia';
+    $servidor = '127.0.0.1:3306';
+    $usuario = 'u348518502_samuel';
+    $senha = '8Gfz&[UU?I~$'; 
+    $banco = 'u348518502_database';
 
 
     try {

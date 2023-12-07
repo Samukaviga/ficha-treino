@@ -5,24 +5,38 @@
 
     session_start();  
     
-    $id_professor = $_SESSION["id"];
-    $id_aluno = $_SESSION['id_aluno'];
+    $id_usuario = $_SESSION["id"];
+    $nome = $_SESSION["nome"];
+    $email = $_SESSION['email'];
     $admin = $_SESSION['admin'];
-    
+   
 
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
         header("location: ./login.php");
         exit;
     }
 
-    
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    if($_SERVER["REQUEST_METHOD"] == "GET"){
-        $nomeExercicio = $_GET['nome'];
-        $tipo_treino = $_GET['tipo'];
+        if(empty(trim($_POST["senha-atual"])) || empty(trim($_POST["senha-nova"]))){
+            alerta("Por favor insira uma senha");
+        } else if($_POST["senha-nova"] !== $_POST["confirmar-senha"]) {
+            alerta("As Senhas nao se coincidem");
+        } else{
+           
+           $senhaAntiga = $_POST["senha-atual"];
+           $senhaNova = $_POST["senha-nova"];
+        
+           $alterou = alterarSenha($pdo, $senhaNova, $senhaAntiga, $id_usuario);
+
+           if($alterou){
+               alerta("Senha alterada com sucesso!");
+           } else {
+               alerta("Senha incorreta");
+           }
+       }
+
     }
-
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,22 +58,43 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="../">HOME</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a></li>
                     <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
+                
                 </ul>
             </div>
         </nav>
-    </header>
+    </header> 
     <main class="principal__treino">
 
-            <a href="./treino.php?tipo=<?= $tipo_treino; ?>"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
-            <h1 class="treino__titulo"><?= $nomeExercicio; ?></h1>
-    
+            <a href="./"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+ 
 
-        <section class="treino">
-            <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.gif" alt="">
+        <h2 class="adicionar__titulo" >Alterar Senha</h2>
+
+        <section class="adicionar">
+            <form class="formulario" action="" method="POST">
+            
+               
+                <div class="formulario__div" >
+                    <label class="formulario__div__label" for="">Senha Atual</label>
+                    <input class="formulario__div__input" type="text" name="senha-atual">
+                </div>
+
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Senha Nova</label>
+                    <input class="formulario__div__input" type="text" name="senha-nova">
+                </div>
+                  
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Confirmar Senha</label>
+                    <input class="formulario__div__input" type="text" name="confirmar-senha">
+                </div>
+
+                <button class="formulario__botao" type="submit" name="enviar" >Alterar</button>
+            </form>
         </section>
     </main>
 <script>

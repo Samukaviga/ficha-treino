@@ -48,3 +48,40 @@ function listagemTreino($pdo, $tipo, $id){
     $result = $stmt->fetchAll();
     return $result;
 }
+
+function alterarSenha($pdo, $senhaNova, $senhaAntiga, $id){
+
+
+    $sql = "SELECT senha FROM aluno WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+        
+        if($stmt->execute()){
+            $sql_senha = $stmt->fetch(); 
+
+            if(password_verify($senhaAntiga, $sql_senha['senha'])){
+
+                $senhaCriptografada = password_hash($senhaNova, PASSWORD_DEFAULT);
+
+                $sql = "UPDATE aluno SET senha = :senha WHERE id = :id";
+                
+                if($stmt = $pdo->prepare($sql)){
+                    $stmt->bindParam(":senha", $senhaCriptografada, PDO::PARAM_STR);
+                    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                    $stmt->execute();
+
+                    if($stmt->rowCount()){
+                       return true;
+                    } 
+                
+                } else {
+                    return false;
+                }
+            }
+
+        } else {
+            return false;
+        }
+  
+
+}
