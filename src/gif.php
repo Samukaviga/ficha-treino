@@ -27,6 +27,9 @@
        
     }
 
+        $concluido = $treino[0]['concluido'];
+        $checkboxConcluido = ($concluido == 0) ? 'checked' : '';
+
 
    
 
@@ -76,8 +79,15 @@
             <h2 class="treino__gif__titulo">Descricao</h2>
            
             <div class="treino__gif__div">    
-                <p class="serie__titulo">Serie:</p>
-                <p class="treino__gif__div__descricao"><?= $treino[0]['serie']; ?></p>
+                
+                <div class="treino__gif__subdiv">
+                    <p class="serie__titulo">Serie:</p>
+                    <p class="treino__gif__div__descricao"><?= $treino[0]['serie']; ?></p>
+                </div>
+
+                <div class="treino__container__serie">
+                <input class="form-check-input" type="checkbox" role="switch" onchange="checkboxConcluido(this, '<?php echo $id_treino; ?>')" <?= $checkboxConcluido; ?>>
+                </div>
             </div>
         
     </main>
@@ -100,5 +110,6 @@
 
 
 </script>
+<script src="./funcoes/js/checkbox.js" ></script>
 </body>
 </html>

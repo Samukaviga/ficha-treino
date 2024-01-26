@@ -5,6 +5,7 @@
     padding: 1em;
     display: flex;
     position: relative;
+    box-shadow: 0 2px 4px rgba(2, 7, 8, 0.8);
 }
 
 .cabecario__menu__icone {

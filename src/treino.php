@@ -78,7 +78,7 @@
                 </a>
             </div>
             <div class="treino__container__serie">
-            <input class="form-check-input" type="checkbox" role="switch" onchange="checkboxConcluido(this, '<?php echo $treino['id']; ?>')" <?= $checkboxConcluido; ?>>
+                <input class="form-check-input" type="checkbox" role="switch" onchange="checkboxConcluido(this, '<?php echo $treino['id']; ?>')" <?= $checkboxConcluido; ?>>
             </div>
         </section>
         <?php $i += 1; ?>
