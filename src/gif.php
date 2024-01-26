@@ -21,6 +21,10 @@
 
         $nomeExercicio = $_GET['nome'];
         $tipo_treino = $_GET['tipo'];
+        $id_treino = $_GET['id_treino'];
+        
+        $treino = buscandoTreino($pdo, $id_treino);
+       
     }
 
 
@@ -67,6 +71,15 @@
         <section class="treino">
             <img class="treino__gif" src="../assets/gif/<?=$nomeExercicio;?>.gif" alt="Exercicio Gif">
         </section>
+
+       
+            <h2 class="treino__gif__titulo">Descricao</h2>
+           
+            <div class="treino__gif__div">    
+                <p class="serie__titulo">Serie:</p>
+                <p class="treino__gif__div__descricao"><?= $treino[0]['serie']; ?></p>
+            </div>
+        
     </main>
 <script>
     const hamburguer = document.querySelector("#hamburguer");

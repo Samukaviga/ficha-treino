@@ -5,9 +5,9 @@
     $dotenv->load(); */
 
     $servidor = '127.0.0.1:3306';
-    $usuario = 'u348518502_samuel';
-    $senha = '8Gfz&[UU?I~$'; 
-    $banco = 'u348518502_database';
+    $usuario = 'root';
+    $senha = ''; 
+    $banco = 'academia';
 
 
     try {

@@ -36,13 +36,23 @@ function cadastrandoAluno($pdo, $nome, $email, $objetivo, $id_professor, $senha)
 }
 
 function listagemTreino($pdo, $tipo, $id){
-    $sql = "SELECT exercicio.agrupamento, exercicio.nome, treino.id, treino.serie, treino.tipo 
+    $sql = "SELECT exercicio.agrupamento, exercicio.nome, treino.id, treino.serie, treino.tipo, treino.concluido 
     FROM treino 
     INNER JOIN exercicio ON exercicio.id = treino.id_exercicio 
     WHERE tipo LIKE CONCAT('%', :tipo, '%') AND treino.id_aluno = :id";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
+}
+
+function buscandoTreino($pdo, $id){
+    $sql = "SELECT serie FROM treino WHERE id = :id";
+
+    $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetchAll();

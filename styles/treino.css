@@ -16,6 +16,7 @@
     color: var(--cor-fonte-titulo);
     text-align: center;
     margin: 0.5em 0;
+    
 }
 
 .treino {
@@ -24,6 +25,9 @@
     display: flex;
     justify-content: space-between;
     border-bottom: solid 2px var(--cor-de-fundo-treino) ;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+    margin: 1em 0;
+ 
 }
 
 .treino__container__conteudo{
@@ -58,10 +62,60 @@
     font-size: 1.3em;
 }
 
+.div__botao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.botao__concluido {
+    background-color: #4f8586;
+    padding: 0.5em 1em;
+    font-size: 1.4em;
+    color: var(--cor-fonte-titulo);
+    border-radius: 5px;
+}
+
 /*Pagina gif*/
 
 .treino__gif{
     width: 100%;
+}
+
+.treino__gif__sessao{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.treino__gif__titulo{
+    font-weight: 500;
+    color: var(--cor-fonte-titulo);
+    font-size: 1.3em;
+    margin-top: 1em;
+}
+
+.treino__gif__div{
+    display: flex;
+    gap: 8px;
+    margin: 0.5em 0;
+    border: 1px solid var(--cor-fonte-titulo);
+    padding: 0.9em 0.5em;
+    background-color: var(--cor-menu);
+    border-radius: 5px;
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.serie__titulo{
+    color: var(--cor-fonte-titulo);
+    font-size: 1.3em;
+}
+
+.treino__gif__div__descricao{
+    color: rgb(192, 141, 104);
+    font-size: 1.3em;
 }
 
 /* pagina treino admin */

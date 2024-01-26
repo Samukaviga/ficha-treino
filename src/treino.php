@@ -9,6 +9,7 @@
     $nome = $_SESSION["nome"];
     $email = $_SESSION['email'];
 
+
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: ./login.php");
         exit;
@@ -61,20 +62,33 @@
             <h1 class="treino__titulo">Treino - <?= $tipo; ?></h1>
     
         <?php $i = 1; ?>
-        <?php foreach($treinos as $treino): ?>
+        <?php
+         
+         foreach($treinos as $treino): 
+         
+            $concluido = $treino['concluido'];
+            $checkboxConcluido = ($concluido == 0) ? 'checked' : '';
+         
+         ?>
         <section class="treino">
             <div class="treino__container__conteudo" >
-                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo; ?>">
+                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo; ?>&id_treino=<?=$treino['id']; ?>">
                     <p class="treino__container__conteudo__titulo" ><?= $treino['tipo']; ?><?= $i; ?> <?= $treino['agrupamento']; ?></p>
                     <p class="treino__container__conteudo__exercicio"><?= $treino['nome']; ?></p>
                 </a>
             </div>
             <div class="treino__container__serie">
-                <p class="treino__container__conteudo__serie"><?= $treino['serie']; ?></p>
+            <input class="form-check-input" type="checkbox" role="switch" onchange="checkboxConcluido(this, '<?php echo $treino['id']; ?>')" <?= $checkboxConcluido; ?>>
             </div>
         </section>
         <?php $i += 1; ?>
         <?php endforeach; ?>
+
+        <div class="div__botao">
+            <a href="./funcoes/treinoConcluido.php?id=<?= $id; ?>&tipo=<?= $tipo; ?>" class="botao__concluido">Concluir</a>
+        </div>
+        
+
     
     </main> 
 <script>
@@ -96,5 +110,6 @@
 
 
 </script>
+<script src="./funcoes/js/checkbox.js" ></script>
 </body>
 </html>
