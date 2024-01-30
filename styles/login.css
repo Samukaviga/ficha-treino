@@ -9,6 +9,7 @@
     margin: 12em 2em 1em 2em;
     border-radius: 1em;
     padding: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 .cadastro {
@@ -50,6 +51,7 @@
 .formulario__div__input {
     width: 18em;
     height: 1.6em;
+   
 }
 
 .formulario__botao {
