@@ -20,7 +20,11 @@
     if($_SERVER["REQUEST_METHOD"] == "GET"){
         $nomeExercicio = $_GET['nome'];
         $tipo_treino = $_GET['tipo'];
+        $id_treino = $_GET['id_treino'];
     }
+
+    $treino = buscandoTreino($pdo, $id_treino);
+
 
 
 ?>
@@ -61,6 +65,33 @@
         <section class="treino">
             <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.gif" alt="">
         </section>
+
+        <h2 class="treino__gif__titulo">Descricao</h2>
+           
+           <div class="treino__gif__div">    
+               
+               <div class="treino__gif__subdiv">
+                   <p class="serie__titulo">Série:</p>
+                   <p class="treino__gif__div__descricao"><?= $treino['serie']; ?></p>
+               </div>
+
+               
+           </div>
+
+           <div class="treino__gif__div">    
+               
+               <div class="treino__gif__subdiv">
+                   <p class="serie__titulo">Obs:</p>
+                   <p class="treino__gif__div__descricao"><?= $treino['obs'] ? $treino['obs'] : '---' ?></p>
+               </div>
+
+           </div>
+           <div class="sessao__dados__alterar" >
+                <a class="sessao__dados__alterar__botao editar__botao" href="./editarDados.php?id_treino=<?= $treino['id']; ?>">Editar</a>
+            </div>
+
+
+
     </main>
 <script>
     const hamburguer = document.querySelector("#hamburguer");

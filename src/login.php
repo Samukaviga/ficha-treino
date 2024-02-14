@@ -68,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <main class="login">
 
         <h1 class="login__titulo" >Login</h1>
-    
+
         <form class="formulario" action="" method="POST">
             
             <div class="formulario__div">

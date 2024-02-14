@@ -105,14 +105,18 @@
                     <select name="agrupamento" class="formulario__div__input__objetivo">
                       <option value="0">Agrupamento:</option>
                       
-                        
-                        <option value="Quadriceps">Quadriceps</option>
-                        <option value="Posterior Coxa">Posterior Coxa</option>
+                        <option value="Antebraço">Antebraço</option>
+                        <option value="Abdômen">Abdômen</option>
                         <option value="Biceps">Biceps</option>
+                        <option value="Costas">Costas</option>
                         <option value="Triceps">Triceps</option>
                         <option value="Ombro">Ombro</option>
                         <option value="Peito">Peito</option>
-                         <option value="Costas">Costas</option>
+                        <option value="Quadriceps">Quadriceps</option>
+                        <option value="Posterior Coxa">Posterior Coxa</option>
+                        <option value="Glúteo">Glúteo</option>
+                        
+                        
                      
                     </select>
                 </div>

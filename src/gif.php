@@ -81,13 +81,22 @@
             <div class="treino__gif__div">    
                 
                 <div class="treino__gif__subdiv">
-                    <p class="serie__titulo">Serie:</p>
+                    <p class="serie__titulo">Série:</p>
                     <p class="treino__gif__div__descricao"><?= $treino[0]['serie']; ?></p>
                 </div>
 
                 <div class="treino__container__serie">
                 <input class="form-check-input" type="checkbox" role="switch" onchange="checkboxConcluido(this, '<?php echo $id_treino; ?>')" <?= $checkboxConcluido; ?>>
                 </div>
+            </div>
+
+            <div class="treino__gif__div">    
+                
+                <div class="treino__gif__subdiv">
+                    <p class="serie__titulo">Obs:</p>
+                    <p class="treino__gif__div__descricao"><?= $treino[0]['obs'] ? $treino[0]['obs'] : '---' ?></p>
+                </div>
+
             </div>
         
     </main>

@@ -50,7 +50,7 @@ function listagemTreino($pdo, $tipo, $id){
 }
 
 function buscandoTreino($pdo, $id){
-    $sql = "SELECT serie, concluido FROM treino WHERE id = :id";
+    $sql = "SELECT serie, concluido, obs FROM treino WHERE id = :id";
 
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);

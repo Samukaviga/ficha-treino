@@ -44,9 +44,10 @@
          
         $id_exercicio = $_POST['id_exercicio'];
         $serie = trim($_POST["serie"]);
+        $obs = $_POST['obs'];
 
 
-        $adicionado = adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $_SESSION['tipo_treino']);
+        $adicionado = adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $_SESSION['tipo_treino'], $obs);
 
         if($adicionado){
           
@@ -103,7 +104,7 @@
         <section class="treino treino__admin">
             
             <div class="treino__container__conteudo" >
-                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo_treino; ?>">
+                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo_treino; ?>&id_treino=<?= $treino['id']; ?>">
                     <p class="treino__container__conteudo__titulo" ><?= $treino['tipo']; ?><?= $i; ?> <?= $treino['agrupamento']; ?></p>
                     <p class="treino__container__conteudo__exercicio"><?= $treino['nome']; ?></p>
                    
@@ -142,6 +143,10 @@
                 <div class="formulario__div">
                     <label class="formulario__div__label" for="">Serie</label>
                     <input class="formulario__div__input" type="text" name="serie" required>
+                </div>
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Obs</label>
+                    <input class="formulario__div__input" type="text" name="obs" placeholder="Nao obrigatório" >
                 </div>
                   
                 <button class="formulario__botao" type="submit" name="enviar" >Adicionar</button>

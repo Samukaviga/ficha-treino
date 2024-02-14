@@ -65,7 +65,7 @@ function buscandoDadosAluno($pdo, $id) {
 }
 
 function listagemExercicios($pdo) {
-    $sql = "SELECT * FROM exercicio";
+    $sql = "SELECT * FROM exercicio ORDER BY nome";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll();
@@ -87,17 +87,21 @@ function listagemTreino($pdo, $tipo, $id){
 }
 
 
-function adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $tipo){
+function adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $tipo, $obs){
     
-    $sql = "INSERT INTO treino (serie, id_professor, id_exercicio, id_aluno, tipo) 
-                VALUES (:serie, :id_professor, :id_exercicio, :id_aluno, :tipo)";
+    $concluido = 2;
+    
+    $sql = "INSERT INTO treino (serie, id_professor, id_exercicio, id_aluno, tipo, obs, concluido) 
+                VALUES (:serie, :id_professor, :id_exercicio, :id_aluno, :tipo, :obs, :concluido)";
     
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(':serie', $serie, PDO::PARAM_STR);
     $stmt->bindParam(':id_professor', $id_professor, PDO::PARAM_INT);
     $stmt->bindParam(':id_exercicio', $id_exercicio, PDO::PARAM_INT);
     $stmt->bindParam(':id_aluno', $id_aluno, PDO::PARAM_INT);
+    $stmt->bindParam(':concluido', $concluido, PDO::PARAM_INT);
     $stmt->bindParam(':tipo', $tipo, PDO::PARAM_STR);
+    $stmt->bindParam(':obs', $obs, PDO::PARAM_STR);
     
     if($stmt->execute()){
         return true;   
@@ -191,3 +195,32 @@ function alterarSenha($pdo, $senhaNova, $senhaAntiga, $id){
   
 
 }
+
+/* GIF */
+
+function buscandoTreino($pdo, $id_treino){
+    $sql = "SELECT * FROM treino WHERE id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(":id", $id_treino, PDO::PARAM_INT);
+    $stmt->execute();
+    $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+    return $result;
+}
+
+/* editarDados */
+
+function atualizandoDados($pdo, $id_treino, $serie, $obs) {
+    $sql = "UPDATE treino SET serie = :serie, obs = :obs WHERE id = :id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':id', $id_treino, PDO::PARAM_INT);
+    $stmt->bindParam(':serie', $serie, PDO::PARAM_STR);
+    $stmt->bindParam(':obs', $obs, PDO::PARAM_STR);
+
+
+    if($stmt->execute()){
+        return true;   
+    } else {
+        return false;
+    }
+} 
