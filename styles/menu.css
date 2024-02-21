@@ -1,4 +1,7 @@
 
+.icone-menu{
+    width: 22px;
+}
 
 .cabecario__menu {
     background-color: var(--cor-menu);
@@ -39,7 +42,11 @@
 }
 
 .navegacao__lista__item {
-    font-size: 1.5em;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 15px;
+    font-size: 1.2em;
     padding: 0.5em 0;
     border-bottom: solid 1px var(--cor-de-fundo-treino);
     font-weight: 500;

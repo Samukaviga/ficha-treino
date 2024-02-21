@@ -47,10 +47,10 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a><img src="../assets/home-svgrepo-com.svg" class="icone-menu" alt="Icone menu"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a><img src="../assets/alterar.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a><img src="../assets/sair.svg" class="icone-menu" alt="Icone treino"></li>
                 </ul>
             </div>
         </nav>
