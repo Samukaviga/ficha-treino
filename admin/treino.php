@@ -12,6 +12,7 @@
     $admin = $_SESSION['admin'];
 
 
+
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
         header("location: ./login.php");
         exit;
@@ -43,20 +44,19 @@
          
         $id_exercicio = $_POST['id_exercicio'];
         $serie = trim($_POST["serie"]);
+        $obs = $_POST['obs'];
 
 
-        $adicionado = adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $_SESSION['tipo_treino']);
+        $adicionado = adicionandoTreino($pdo, $serie, $id_professor, $id_exercicio, $id_aluno, $_SESSION['tipo_treino'], $obs);
 
         if($adicionado){
-            alerta("Exercicio adicionado com sucesso!");
+          
         } else {
             alerta("Falha ao adicionar o exercicio");
         }
     }
 
-
     $tipo_treino = $_SESSION['tipo_treino'];
-
 
     $exercicios = listagemExercicios($pdo);
     $treinos = listagemTreino($pdo, $_SESSION['tipo_treino'], $id_aluno);
@@ -64,7 +64,7 @@
    
 
 
-?>
+?>  
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -85,9 +85,10 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a><img src="../assets/home-svgrepo-com.svg" class="icone-menu" alt="Icone menu"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a><img src="../assets/alterar.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a><img src="../assets/sair.svg" class="icone-menu" alt="Icone treino"></li>
                 
                 </ul>
             </div>
@@ -103,7 +104,7 @@
         <section class="treino treino__admin">
             
             <div class="treino__container__conteudo" >
-                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo_treino; ?>">
+                <a href="./gif.php?nome=<?= $treino['nome']; ?>&tipo=<?= $tipo_treino; ?>&id_treino=<?= $treino['id']; ?>">
                     <p class="treino__container__conteudo__titulo" ><?= $treino['tipo']; ?><?= $i; ?> <?= $treino['agrupamento']; ?></p>
                     <p class="treino__container__conteudo__exercicio"><?= $treino['nome']; ?></p>
                    
@@ -142,6 +143,10 @@
                 <div class="formulario__div">
                     <label class="formulario__div__label" for="">Serie</label>
                     <input class="formulario__div__input" type="text" name="serie" required>
+                </div>
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Obs</label>
+                    <input class="formulario__div__input" type="text" name="obs" placeholder="Nao obrigatório" >
                 </div>
                   
                 <button class="formulario__botao" type="submit" name="enviar" >Adicionar</button>

@@ -21,7 +21,14 @@
 
         $nomeExercicio = $_GET['nome'];
         $tipo_treino = $_GET['tipo'];
+        $id_treino = $_GET['id_treino'];
+        
+        $treino = buscandoTreino($pdo, $id_treino);
+       
     }
+
+        $concluido = $treino[0]['concluido'];
+        $checkboxConcluido = ($concluido == 0) ? 'checked' : '';
 
 
    
@@ -48,11 +55,12 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="../">HOME</a></li>
-                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a></li>
-                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a></li>
-                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a></li>
-                    <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a><img src="../assets/home-svgrepo-com.svg" class="icone-menu" alt="Icone menu"></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./alterarSenha.php">Alterar Senha</a><img src="../assets/alterar.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a><img src="../assets/sair.svg" class="icone-menu" alt="Icone treino"></li>
                 </ul>
             </div>
         </nav>
@@ -64,8 +72,33 @@
     
 
         <section class="treino">
-            <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.webp" alt="">
+            <img class="treino__gif" src="../assets/gif/<?=$nomeExercicio;?>.gif" alt="Exercicio Gif">
         </section>
+
+       
+            <h2 class="treino__gif__titulo">Descricao</h2>
+           
+            <div class="treino__gif__div">    
+                
+                <div class="treino__gif__subdiv">
+                    <p class="serie__titulo">Série:</p>
+                    <p class="treino__gif__div__descricao"><?= $treino[0]['serie']; ?></p>
+                </div>
+
+                <div class="treino__container__serie">
+                <input class="form-check-input" type="checkbox" role="switch" onchange="checkboxConcluido(this, '<?php echo $id_treino; ?>')" <?= $checkboxConcluido; ?>>
+                </div>
+            </div>
+
+            <div class="treino__gif__div">    
+                
+                <div class="treino__gif__subdiv">
+                    <p class="serie__titulo">Obs:</p>
+                    <p class="treino__gif__div__descricao"><?= $treino[0]['obs'] ? $treino[0]['obs'] : '---' ?></p>
+                </div>
+
+            </div>
+        
     </main>
 <script>
     const hamburguer = document.querySelector("#hamburguer");
@@ -86,5 +119,6 @@
 
 
 </script>
+<script src="./funcoes/js/checkbox.js" ></script>
 </body>
 </html>

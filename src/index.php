@@ -38,11 +38,12 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a></li>
-                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a></li>
-                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a></li>
-                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a></li>
-                    <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a><img src="../assets/home-svgrepo-com.svg" class="icone-menu" alt="Icone menu"></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=A">Treino - A</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=B">Treino - B</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./alterarSenha.php">Alterar Senha</a><img src="../assets/alterar.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a><img src="../assets/sair.svg" class="icone-menu" alt="Icone treino"></li>
                 </ul>
             </div>
         </nav>
@@ -65,8 +66,8 @@
                 <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO: </strong><?= $aluno['nome']; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR: </strong><?= $aluno['professor']; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO: </strong><?= $aluno['objetivo']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong><?= $aluno['data_inicio']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong><?= $aluno['data_troca']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong><?= $aluno['data_inicio'] ? date("d/m/Y", strtotime($aluno['data_inicio'])) : ' --' ; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong><?= $aluno['data_troca'] ? date("d/m/Y", strtotime($aluno['data_troca'])) : ' --'; ?></li>
             </ul>
         </section>
     </main>

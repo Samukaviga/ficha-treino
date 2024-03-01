@@ -8,8 +8,7 @@
     $id_professor = $_SESSION["id"];
     $id_aluno = $_SESSION['id_aluno'];
     $admin = $_SESSION['admin'];
-
-
+    
 
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $admin != 1){
         header("location: ./login.php");
@@ -19,13 +18,13 @@
     
 
     if($_SERVER["REQUEST_METHOD"] == "GET"){
-
         $nomeExercicio = $_GET['nome'];
         $tipo_treino = $_GET['tipo'];
+        $id_treino = $_GET['id_treino'];
     }
 
+    $treino = buscandoTreino($pdo, $id_treino);
 
-   
 
 
 ?>
@@ -49,9 +48,10 @@
             <div class="navegacao" id="navegacao">
                 
                 <ul class="navegacao__lista">
-                    <li class="navegacao__lista__item"><a class="strong-home" href="../">HOME</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a></li>
-                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./">HOME</a><img src="../assets/home-svgrepo-com.svg" class="icone-menu" alt="Icone menu"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./exercicio.php">Exercicio</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./alterarSenha.php">Alterar Senha</a><img src="../assets/alterar.svg" class="icone-menu" alt="Icone treino"></li>
+                    <li class="navegacao__lista__item"><a class="strong-home" href="./logout.php">SAIR</a><img src="../assets/sair.svg" class="icone-menu" alt="Icone treino"></li>
                 </ul>
             </div>
         </nav>
@@ -63,8 +63,35 @@
     
 
         <section class="treino">
-            <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.webp" alt="">
+            <img class="treino__gif" src="../assets/gif/<?= $nomeExercicio; ?>.gif" alt="">
         </section>
+
+        <h2 class="treino__gif__titulo">Descricao</h2>
+           
+           <div class="treino__gif__div">    
+               
+               <div class="treino__gif__subdiv">
+                   <p class="serie__titulo">Série:</p>
+                   <p class="treino__gif__div__descricao"><?= $treino['serie']; ?></p>
+               </div>
+
+               
+           </div>
+
+           <div class="treino__gif__div">    
+               
+               <div class="treino__gif__subdiv">
+                   <p class="serie__titulo">Obs:</p>
+                   <p class="treino__gif__div__descricao"><?= $treino['obs'] ? $treino['obs'] : '---' ?></p>
+               </div>
+
+           </div>
+           <div class="sessao__dados__alterar" >
+                <a class="sessao__dados__alterar__botao editar__botao" href="./editarDados.php?id_treino=<?= $treino['id']; ?>">Editar</a>
+            </div>
+
+
+
     </main>
 <script>
     const hamburguer = document.querySelector("#hamburguer");
