@@ -77,9 +77,10 @@
                 <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO: </strong><?= $aluno['nome']; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR: </strong><?= $aluno['professor']; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO: </strong><?= $aluno['objetivo']; ?></li>
+                <li class="sessao__dados__lista__item" ><strong class="strong">Data Nascimento: </strong><?= $aluno['data_nascimento'] ? date("d/m/Y", strtotime($aluno['data_nascimento'])) : ' --' ; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong> <?= $aluno['data_inicio'] ? date('d/m/Y', strtotime($aluno['data_inicio'])) : '--'; ?></li>
                 <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong> <?= $aluno['data_troca'] ? date('d/m/Y', strtotime($aluno['data_troca'])) : '--'; ?></li>
-                
+                <li class="sessao__dados__lista__item" ><strong class="strong">Saúde/Medicamento: </strong><?= $aluno['saude_medicamento'] ? $aluno['saude_medicamento'] : ' --' ; ?></li>
                 <div class="sessao__dados__alterar" >
                     <a class="sessao__dados__alterar__botao" href="./alterarData.php">Alterar</a>
                 </div>

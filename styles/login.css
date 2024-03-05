@@ -27,6 +27,7 @@
     font-size: 2.2em;
     color: var(--cor-de-fundo);
     font-weight: 800;
+    margin-bottom: 0.5em;
 }
 
 .formulario {
@@ -51,7 +52,8 @@
 .formulario__div__input {
     width: 18em;
     height: 1.6em;
-   
+    border: 2px solid var(--cor-de-fundo);
+    border-radius: 5px;
 }
 
 .formulario__botao {

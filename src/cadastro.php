@@ -36,11 +36,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $email = $_POST["email"];
             $senha = $_POST["senha"];
             $nome = $_POST['nome'];
+            $data_nascimento = $_POST['data_nascimento'];
+            $saude_medicamento = $_POST['saude_medicamento'];
             $objetivo = $_POST['objetivo'];
             $id_professor = $_POST['id_professor'];
             
         
-            if(cadastrandoAluno($pdo, $nome, $email, $objetivo, $id_professor, $senha)){
+            if(cadastrandoAluno($pdo, $nome, $email, $objetivo, $id_professor, $senha, $data_nascimento, $saude_medicamento)){
                 alerta('Cadastro realizado com sucesso!');
             } else {
                 alerta('Falha ao cadastrar');
@@ -96,6 +98,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </select>
               </div>
               
+            <div class="formulario__div">
+                <label class="formulario__div__label" for="">Data Nascimento</label>
+                <input class="formulario__div__input" type="date" name="data_nascimento" required>
+            </div> 
 
             <div class="formulario__div">
                 <label class="formulario__div__label" for="">Email</label>
@@ -111,7 +117,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <label class="formulario__div__label" for="">Confirmar a Senha</label>
                 <input class="formulario__div__input" type="password" name="senhaRedigitada" required>
             </div>
-            <button class="formulario__botao" type="submit" name="enviar" >Entrar</button>
+
+            <div class="formulario__div">
+                <label class="formulario__div__label" for="">Saúde/Medicamento</label>
+                <textarea class="formulario__div__input" cols="30" rows="20" type="text" name="saude_medicamento" placeholder="Se sim, descrever"></textarea>
+            </div> 
+
+            <button class="formulario__botao" type="submit" name="enviar" >Cadastrar</button>
         </form>
 
         <div class="formulario__adicionais" >

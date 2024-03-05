@@ -9,14 +9,30 @@
     $nome = $_SESSION["nome"];
     $email = $_SESSION['email'];
 
+    $aluno = buscandoAluno($pdo, $email);
+    
     if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         header("location: ./login.php");
         exit;
     }
 
-    $aluno = buscandoAluno($pdo, $email);
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+        if(empty(trim($_POST["nome"]))){
+            alerta("Campo nome obrigatório");
+        } else{
+           
+                $editado = editandoAluno($pdo, $_POST['nome'], $_POST['data_nascimento'], $_POST['saude_medicamento'], $id_usuario);
+                if($editado){
+                    header('Location: ./index.php');
+                    exit();
+                } else {
+                    alerta("Falha ao Editar!");
+                }
+          
+       }
 
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -44,37 +60,39 @@
                     <li class="navegacao__lista__item"><a href="./treino.php?tipo=C">Treino - C</a><img src="../assets/treino1.svg" class="icone-menu" alt="Icone treino"></li>
                     <li class="navegacao__lista__item"><a href="./alterarSenha.php">Alterar Senha</a><img src="../assets/alterar.svg" class="icone-menu" alt="Icone treino"></li>
                     <li class="navegacao__lista__item"><a href="./logout.php">SAIR</a><img src="../assets/sair.svg" class="icone-menu" alt="Icone treino"></li>
+                
                 </ul>
             </div>
         </nav>
     </header>
-    <main class="principal">
-        <section class="sessao__treino">
-            <div class="sessao__treino__container">
-                <h1 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=A">Treino - A</a></h1>
-            </div>
-            <div class="sessao__treino__container">
-                <h2 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=B">Treino - B</a></h2>
-            </div>
-            <div class="sessao__treino__container">
-                <h3 class="sessao__treino__container__titulo"><a href="./treino.php?tipo=C">Treino - C</a></h3>
-            </div>
-        </section>
+    <main class="principal__treino">
 
-        <section class="sessao__dados">
-            <ul class="sessao__dados__lista">
-                <li class="sessao__dados__lista__item" ><strong class="strong">ALUNO: </strong><?= $aluno['nome']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">PROFESSOR: </strong><?= $aluno['professor']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">OBJETIVO: </strong><?= $aluno['objetivo']; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data Nascimento: </strong><?= $aluno['data_nascimento'] ? date("d/m/Y", strtotime($aluno['data_nascimento'])) : ' --' ; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data Inicio: </strong><?= $aluno['data_inicio'] ? date("d/m/Y", strtotime($aluno['data_inicio'])) : ' --' ; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Data de Troca: </strong><?= $aluno['data_troca'] ? date("d/m/Y", strtotime($aluno['data_troca'])) : ' --'; ?></li>
-                <li class="sessao__dados__lista__item" ><strong class="strong">Saúde/Medicamento: </strong><?= $aluno['saude_medicamento'] ? $aluno['saude_medicamento'] : ' --' ; ?></li>
-                <div class="sessao_botao-editar">
-                    <a href="./editar.php">Editar</a>
-                </div>
-            </ul>
+            <a href="./"><img class="icone__voltar" src="../assets/angulo-esquerdo.svg" alt=""></a>
+ 
+
+        <h2 class="adicionar__titulo" >Editar Dados</h2>
+
+        <section class="adicionar">
+            <form class="formulario" action="" method="POST">
             
+               
+                <div class="formulario__div" >
+                    <label class="formulario__div__label" for="">Nome</label>
+                    <input class="formulario__div__input" type="text" name="nome" value="<?= $aluno['nome'] ? $aluno['nome'] : ""; ?>">
+                </div>
+
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Data de nascimento</label>
+                    <input class="formulario__div__input" type="date" name="data_nascimento" value = "<?= $aluno['data_nascimento'] ? $aluno['data_nascimento'] : "" ?>">
+                </div>
+                  
+                <div class="formulario__div">
+                    <label class="formulario__div__label" for="">Saude / Medicamento </label>
+                    <input class="formulario__div__input" type="text" name="saude_medicamento" value = "<?= $aluno['saude_medicamento'] ? $aluno['saude_medicamento'] : " " ?>">
+                </div>
+
+                <button class="formulario__botao" type="submit" name="enviar" >Editar</button>
+            </form>
         </section>
     </main>
 <script>

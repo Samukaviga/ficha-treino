@@ -81,4 +81,20 @@
     font-weight: 500;
 }
 
+.sessao_botao-editar {
+    display: flex;
+    justify-content: end;
+}
+
+.sessao_botao-editar a {
+    padding: 0.8em 1em;
+    background-color: var(--cor-de-fundo-treino);
+    color: aliceblue;
+    border-radius: 6px;
+}
+
+.sessao_botao-editar a:hover {
+    
+}
+
 

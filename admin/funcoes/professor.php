@@ -56,7 +56,7 @@ function alerta($mensagem) {
 
 function buscandoDadosAluno($pdo, $id) {
       
-    $sql = "SELECT aluno.id, aluno.email, aluno.nome, aluno.senha, aluno.id_professor, aluno.objetivo, aluno.data_inicio, aluno.data_troca, professor.nome as 'professor' FROM aluno INNER JOIN professor ON professor.id = aluno.id_professor WHERE aluno.id = :id";
+    $sql = "SELECT aluno.id, aluno.email, aluno.saude_medicamento, aluno.data_nascimento ,aluno.nome, aluno.senha, aluno.id_professor, aluno.objetivo, aluno.data_inicio, aluno.data_troca, professor.nome as 'professor' FROM aluno INNER JOIN professor ON professor.id = aluno.id_professor WHERE aluno.id = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
