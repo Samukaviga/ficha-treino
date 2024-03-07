@@ -110,10 +110,7 @@
                    
                 </a>
             </div>
-            <div class="treino__container__serie">
-                <p class="treino__container__conteudo__serie"><?= $treino['serie']; ?></p>
-             
-            </div>
+           
             
         </section>
         
